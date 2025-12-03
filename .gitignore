@@ -2,5 +2,6 @@
 .idea
 .kotlin/
 build
-src/**/*.txt
+src/**/input.txt
 local.properties
+/src/session
