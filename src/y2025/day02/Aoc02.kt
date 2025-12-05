@@ -69,21 +69,21 @@ fun main() {
 	Aoc02
 		.test("""11-22,95-115,998-1012,1188511880-1188511890,222220-222224,1698522-1698528,446443-446449,38593856-38593862,565653-565659,824824821-824824827,2121212118-2121212124""")
 		.initPart1(1227775554L, 19219508902L)
-		.text { fullLine ->
+		.inputAsText { fullLine ->
 			fullLine
 				.splitToSequence(",")
 				.map { item -> item.split("-").let { Item(it[0], it[1]) } }
 				.sumOf { it.process1() }
 		}
 		.initPart2(4174379265L, 27180728081L)
-		.text("doubled") { fullLine ->
+		.inputAsText("doubled") { fullLine ->
 			fullLine
 				.splitToSequence(",")
 				.map { item -> item.split("-").let { Item(it[0], it[1]) } }
 				.sumOf { it.process2() }
 		}
 		.initPart2(4174379265L, 27180728081L)
-		.text("regex") { fullLine ->
+		.inputAsText("regex") { fullLine ->
 			fullLine
 				.splitToSequence(",")
 				.map { item -> item.split("-").let { Item(it[0], it[1]) } }

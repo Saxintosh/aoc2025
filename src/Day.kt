@@ -57,17 +57,17 @@ open class Day {
 		private val openYellow = "\u001B[33m"
 		private val normalColor = "\u001B[0m"
 
-		fun lines(label: String = "", block: (List<String>) -> T): Day {
+		fun inputAslines(label: String = "", block: (List<String>) -> T): Day {
 			part(label, testInput.lines(), realInput.lines(), block)
 			return this@Day
 		}
 
-		fun lines(function: KFunction1<List<String>, T>): Day {
+		fun inputAslines(function: KFunction1<List<String>, T>): Day {
 			part(function.name, testInput.lines(), realInput.lines(), function)
 			return this@Day
 		}
 
-		fun text(label: String = "", block: (String) -> T): Day {
+		fun inputAsText(label: String = "", block: (String) -> T): Day {
 			part(label, testInput, realInput, block)
 			return this@Day
 		}

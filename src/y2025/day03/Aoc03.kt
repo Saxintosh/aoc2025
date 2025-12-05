@@ -69,19 +69,19 @@ fun main() {
 818181911112111"""
 		)
 		.initPart1(357, 17435)
-		.lines {
+		.inputAslines {
 			it.sumOf { line ->
 				line.findSimpleJolts()
 			}
 		}
 		.initPart2(3121910778619L, 172886048065379L)
-		.lines {
+		.inputAslines {
 			it.sumOf { line ->
 				line.findLongJolts()
 			}
 		}
 		.initPart2(3121910778619L, 172886048065379L)
-		.lines {
+		.inputAslines {
 			it.sumOf { line ->
 				line.findLongJolts2()
 			}

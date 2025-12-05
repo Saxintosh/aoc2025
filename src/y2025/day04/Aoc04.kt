@@ -45,13 +45,13 @@ fun main() {
 @.@.@@@.@."""
 		)
 		.initPart1(13, 1516)
-		.lines {
+		.inputAslines {
 			val g = ChGrid(it)
 			g.asPointsSequenceAndValue()
 				.count { p -> p.second == '@' && p.first.fewerThanFourRollsOfPaper(g) }
 		}
 		.initPart2(43, 1)
-		.lines {
+		.inputAslines {
 			val g = ChGrid(it)
 			var last = 0
 			var current = 0
