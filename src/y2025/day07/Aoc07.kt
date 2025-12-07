@@ -118,6 +118,3 @@ fun main() {
 		}
 
 }
-
-// 1853021308 is too low
-// 6147988604 is too low
