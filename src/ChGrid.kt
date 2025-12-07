@@ -110,7 +110,7 @@ data class LPoint(val x: Long, val y: Long) {
 
 data class HRange(val y: Int, val range: IntRange)
 
-class ChGrid(src: List<String>) {
+open class ChGrid(src: List<String>) {
 	val lines = src.map { it.toCharArray() }
 	val xRange = lines[0].indices
 	val yRange = lines.indices

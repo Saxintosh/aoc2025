@@ -43,10 +43,7 @@ fun main() {
 					val (a, b) = line.split("-")
 					(a.toLong() .. b.toLong())
 				}
-				.sortedWith(
-					compareBy<LongRange> { it.first }
-						.thenBy { it.last }
-				)
+				.sortedBy { it.first }
 
 			// ordered, now I have to look for overlaps
 			var nextIndex = -1L
