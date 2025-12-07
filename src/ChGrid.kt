@@ -150,6 +150,9 @@ open class ChGrid(src: List<String>) {
 		}
 	}
 
+	fun findFirst(ch: Char) = asPointsSequenceAndValue().firstOrNull { it.second == ch }?.first
+
+
 	operator fun contains(p: Point) = p.x in xRange && p.y in yRange
 
 	fun deepHashCode() = lines.fold(1) { acc, array -> (31 * acc) + array.contentHashCode() }
