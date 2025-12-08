@@ -16,6 +16,7 @@ open class Day {
 	open val benchmarkRepetition: Int = 1
 	private val realInput: String
 	private val day: Int
+	var isTest = true
 
 	init {
 		val e = Exception()
@@ -57,12 +58,12 @@ open class Day {
 		private val openYellow = "\u001B[33m"
 		private val normalColor = "\u001B[0m"
 
-		fun inputAslines(label: String = "", block: (List<String>) -> T): Day {
+		fun inputAsLines(label: String = "", block: (List<String>) -> T): Day {
 			part(label, testInput.lines(), realInput.lines(), block)
 			return this@Day
 		}
 
-		fun inputAslines(function: KFunction1<List<String>, T>): Day {
+		fun inputAsLines(function: KFunction1<List<String>, T>): Day {
 			part(function.name, testInput.lines(), realInput.lines(), function)
 			return this@Day
 		}
@@ -75,6 +76,7 @@ open class Day {
 		private fun <SRC> part(label: String, src1: SRC, src2: SRC, block: (SRC) -> T) {
 			println("[$label]:")
 			if (resTest != null) {
+				isTest = true
 				val timedResult = measureTimedValue { block(src1) }
 				println("${openGreen}Test Part $part$normalColor = ${timedResult.value}")
 				if (timedResult.value != resTest) {
@@ -83,6 +85,7 @@ open class Day {
 				}
 			}
 			if (res != null) {
+				isTest = false
 				var timedResult = measureTimedValue { block(src2) } // discarded
 				var extraInfo = ""
 				if (benchmarkRepetition > 1) {

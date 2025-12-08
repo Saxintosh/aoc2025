@@ -38,7 +38,7 @@ fun main() {
 *   +   *   +  """
 		)
 		.initPart1(4277556L, 7644505810277L)
-		.inputAslines { lines ->
+		.inputAsLines { lines ->
 			val ops = lines.last().trim().split(rgx)
 			val acc = LongArray(ops.size) { 0 }
 			ops.forEachIndexed { idx, op ->
@@ -57,7 +57,7 @@ fun main() {
 			acc.sum()
 		}
 		.initPart2(3263827L, 12841228084455L)
-		.inputAslines {
+		.inputAsLines {
 			val rg = Aoc06.Grid2(ChGrid(it))
 			var sum = 0L
 			val numbers = mutableListOf<Long>()

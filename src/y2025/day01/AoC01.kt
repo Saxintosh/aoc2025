@@ -132,17 +132,17 @@ L82"""
 	)
 
 	Aoc01.initPart1(3, 1129)
-		.inputAslines(Aoc01::part1)
+		.inputAsLines(Aoc01::part1)
 
 	Aoc01.initPart1(3, 1129)
-		.inputAslines(Aoc01::part1b)
+		.inputAsLines(Aoc01::part1b)
 
 	Aoc01.initPart1(3, 1129)
-		.inputAslines(Aoc01::part1c)
+		.inputAsLines(Aoc01::part1c)
 
 	Aoc01.initPart2(6, 6638)
-		.inputAslines(Aoc01::part2)
+		.inputAsLines(Aoc01::part2)
 
 	Aoc01.initPart2(6, 6638)
-		.inputAslines(Aoc01::part2b)
+		.inputAsLines(Aoc01::part2b)
 }

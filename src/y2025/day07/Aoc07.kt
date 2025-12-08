@@ -51,7 +51,7 @@ fun main() {
 ..............."""
 		)
 		.initPart1(21, 1628)
-		.inputAslines { lines ->
+		.inputAsLines { lines ->
 			val g = ChGrid(lines)
 			val s = g.findFirst('S')!!
 			var split = 0
@@ -76,7 +76,7 @@ fun main() {
 			split
 		}
 		.initPart1(21, 1628)
-		.inputAslines { lines ->
+		.inputAsLines { lines ->
 			val lines2 = lines.filter { !(it.all { c -> c == '.' }) }
 			val g = ChGrid(lines2)
 			val s = g.findFirst('S')!!
@@ -97,7 +97,7 @@ fun main() {
 			split
 		}
 		.initPart2(40L, 27055852018812L)
-		.inputAslines { lines ->
+		.inputAsLines { lines ->
 			val lines2 = lines.filter { !(it.all { c -> c == '.' }) }
 			val g = ChGrid(lines2)
 			val s = g.findFirst('S')!!
