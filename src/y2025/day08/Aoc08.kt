@@ -3,7 +3,7 @@ package y2025.day08
 import Day
 import y2025.day08.Aoc08.sortByDistances
 import y2025.day08.Aoc08.toPoint3D
-import java.util.LinkedList
+import java.util.*
 
 private object Aoc08: Day() {
 	override val benchmarkRepetition = 1
@@ -40,6 +40,40 @@ private object Aoc08: Day() {
 	class Circuit: HashSet<Point3D>()
 	class Circuits: LinkedList<Circuit>() {
 		fun findCircuit(p: Point3D) = find { p in it }
+
+		fun addSegment(s: Triple<Point3D, Point3D, Long>) {
+			val (p1, p2, _) = s
+			val c1 = findCircuit(p1)
+			val c2 = findCircuit(p2)
+			when {
+				c1 == null && c2 == null -> {
+					val newCircuit = Circuit()
+					newCircuit.add(p1)
+					newCircuit.add(p2)
+					add(newCircuit)
+				}
+
+				c1 != null && c2 == null -> {
+					c1.add(p2)
+				}
+
+				c1 == null && c2 != null -> {
+					c2.add(p1)
+				}
+
+				c1 == c2                 -> {
+					//skip
+				}
+
+				c1 != null && c2 != null -> {
+					c1.addAll(c2)
+					remove(c2)
+				}
+
+				else                     -> throw Exception("UNEXPECTED")
+			}
+
+		}
 	}
 }
 
@@ -80,42 +114,7 @@ fun main() {
 				.also { println("Size: ${it.size}") }
 				.asSequence()
 				.take(toTake)
-				.forEach {
-					val (p1, p2, _) = it
-					val c1 = circuits.findCircuit(p1)
-					val c2 = circuits.findCircuit(p2)
-					when {
-						c1 == null && c2 == null -> {
-							val newCircuit = Aoc08.Circuit()
-							newCircuit.add(p1)
-							newCircuit.add(p2)
-							println("newCircuit: $p1-$p2")
-							circuits.add(newCircuit)
-						}
-
-						c1 != null && c2 == null -> {
-							c1.add(p2)
-							println("addCircuitP2: $p1-$p2")
-						}
-
-						c1 == null && c2 != null -> {
-							c2.add(p1)
-							println("addCircuitP1: $p1-$p2")
-						}
-
-						c1 == c2                 -> {
-							println("skip: $p1-$p2")
-						}
-
-						c1 != null && c2 != null -> {
-							c1.addAll(c2)
-							println("merge: $p1-$p2")
-							circuits.remove(c2)
-						}
-
-						else                     -> throw Exception("UNEXPECTED")
-					}
-				}
+				.forEach(circuits::addSegment)
 
 			circuits.map { it.size }.sorted().takeLast(3).fold(1) { acc, i -> acc * i }
 		}
@@ -131,43 +130,10 @@ fun main() {
 			sortByDistances(points)
 				.also { println("Size: ${it.size}") }
 				.asSequence()
-				.takeWhile { circuits.getOrNull(0)?.size != pointsTotal }
+				.takeWhile { circuits.firstOrNull()?.size != pointsTotal }
 				.forEach {
 					last = it
-					val (p1, p2, _) = it
-					val c1 = circuits.findCircuit(p1)
-					val c2 = circuits.findCircuit(p2)
-					when {
-						c1 == null && c2 == null -> {
-							val newCircuit = Aoc08.Circuit()
-							newCircuit.add(p1)
-							newCircuit.add(p2)
-							println("newCircuit: $p1-$p2")
-							circuits.add(newCircuit)
-						}
-
-						c1 != null && c2 == null -> {
-							c1.add(p2)
-							println("addCircuitP2: $p1-$p2")
-						}
-
-						c1 == null && c2 != null -> {
-							c2.add(p1)
-							println("addCircuitP1: $p1-$p2")
-						}
-
-						c1 == c2                 -> {
-							println("skip: $p1-$p2")
-						}
-
-						c1 != null && c2 != null -> {
-							c1.addAll(c2)
-							println("merge: $p1-$p2")
-							circuits.remove(c2)
-						}
-
-						else                     -> throw Exception("UNEXPECTED")
-					}
+					circuits.addSegment(it)
 				}
 
 			last!!.first.x * last.second.x
